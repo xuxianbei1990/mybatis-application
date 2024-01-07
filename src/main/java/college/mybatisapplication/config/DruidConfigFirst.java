@@ -1,7 +1,7 @@
 package college.mybatisapplication.config;
 
+import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -26,14 +26,16 @@ public class DruidConfigFirst {
     @Bean(name = "firstSqlSessionFactory")
     @Primary
     public SqlSessionFactory sqlSessionFactory(@Qualifier("firstDataSource") DataSource dataSource) throws Exception {
-        SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
-        bean.setDataSource(dataSource);
+        //把这行代码改为MybatisSqlSessionFactoryBean就可以兼容mybatis plus 但是 MybatisPlusAutoConfiguration 的 sqlSessionFactory 有差异
+//        SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
+        MybatisSqlSessionFactoryBean bean = new MybatisSqlSessionFactoryBean();
 
+        bean.setDataSource(dataSource);
         PathMatchingResourcePatternResolver resourcePatternResolver =  new PathMatchingResourcePatternResolver();
-        //   "classpath*:com/jxy/**/mapper/**/**/*.class"
         bean.setMapperLocations(resourcePatternResolver.getResources("classpath*:college/mybatisapplication/dao/first/*.xml"));
         return bean.getObject();
     }
+
 
     @Bean(name = "firstTransactionManager")
     @Primary
@@ -46,5 +48,8 @@ public class DruidConfigFirst {
     public SqlSessionTemplate sqlSessionTemplate(@Qualifier("firstSqlSessionFactory") SqlSessionFactory sqlSessionFactory) throws Exception {
         return new SqlSessionTemplate(sqlSessionFactory);
     }
+
+
+
 
 }

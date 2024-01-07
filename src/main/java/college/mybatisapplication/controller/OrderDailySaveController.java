@@ -33,7 +33,7 @@ public class OrderDailySaveController {
     public int initDaily() {
         List<JUmppOrderDaily> orderDailies = shareContext.getList().stream().limit(10).collect(Collectors.toList());
         for (JUmppOrderDaily jUmppOrderDaily : orderDailies) {
-            jUmppOrderDailyMapper.insertOne(jUmppOrderDaily);
+            jUmppOrderDailyMapper.insert(jUmppOrderDaily);
         }
         return 1;
     }
