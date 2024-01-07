@@ -1,0 +1,54 @@
+spring:
+  application:
+    name: druidMulti
+  datasource:
+    druid:
+      first:
+        url: jdbc:mysql://192.168.1.152:3306/saft_platform_create_data1?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull&serverTimezone=CTT
+        username: root
+        password: 123456
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        testWhileIdle: true
+        validationQuery: select 1
+        testOnBorrow: true
+        validationInterval: 1000
+        timeBetweenEvictionRunsMillis: 3600000
+        minEvictableIdleTimeMillis: 18000000
+        min-idle: 10
+        initial-size: 10
+        max-active: 10
+        testOnConnect: true
+        initSQL: select 1
+      second:
+        url: jdbc:mysql://192.168.1.152:3306/saft_platform_create_data2?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull&serverTimezone=CTT
+        username: root
+        password: 123456
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        testWhileIdle: true
+        validationQuery: select 1
+        testOnBorrow: true
+        validationInterval: 1000
+        timeBetweenEvictionRunsMillis: 3600000
+        minEvictableIdleTimeMillis: 18000000
+        min-idle: 10
+        initial-size: 10
+        max-active: 10
+        testOnConnect: true
+        initSQL: select 1
+# 应用服务 WEB 访问端口
+server:
+  port: 8080
+
+
+#下面这些内容是为了让MyBatis映射
+#指定Mybatis的Mapper文件
+mybatis:
+#  mapper-locations: classpath:college/mybatisapplication/dao/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+logging:
+  level:
+    college:
+      performance:
+        dao: debug

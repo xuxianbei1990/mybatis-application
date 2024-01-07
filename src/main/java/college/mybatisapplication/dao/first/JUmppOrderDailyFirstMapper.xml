@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="college.mybatisapplication.dao.first.JUmppOrderDailyFirstMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="college.mybatisapplication.entity.JUmppOrderDaily">
+        <id column="id" property="id"/>
+        <result column="code" property="code"/>
+        <result column="order_month_id" property="orderMonthId"/>
+        <result column="material_id" property="materialId"/>
+        <result column="bom_id" property="bomId"/>
+        <result column="process_route_id" property="processRouteId"/>
+        <result column="work_center_id" property="workCenterId"/>
+        <result column="plan_quantity" property="planQuantity"/>
+        <result column="plan_start_date" property="planStartDate"/>
+        <result column="plan_end_date" property="planEndDate"/>
+        <result column="release_status" property="releaseStatus"/>
+        <result column="note" property="note"/>
+        <result column="create_by" property="createBy"/>
+        <result column="update_by" property="updateBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="del_flag" property="delFlag"/>
+        <result column="tenant_id" property="tenantId"/>
+        <result column="order_estimated_delivery_time" property="orderEstimatedDeliveryTime"/>
+        <result column="sale_order_time" property="saleOrderTime"/>
+        <result column="order_insert_status" property="orderInsertStatus"/>
+        <result column="material_status" property="materialStatus"/>
+        <result column="target_cpk" property="targetCpk"/>
+        <result column="qualification_rate" property="qualificationRate"/>
+        <result column="active_flag" property="activeFlag"/>
+        <result column="type" property="type"/>
+        <result column="produce_status" property="produceStatus"/>
+        <result column="pause_reason" property="pauseReason"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, code, order_month_id, material_id, bom_id, process_route_id, work_center_id, plan_quantity, plan_start_date, plan_end_date, release_status, note, create_by, update_by, create_time, update_time, del_flag, tenant_id, order_estimated_delivery_time, sale_order_time, order_insert_status, material_status, target_cpk, qualification_rate, active_flag, type, produce_status, pause_reason
+    </sql>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+          SELECT * FROM j_umpp_order_daily
+    </select>
+
+</mapper>
